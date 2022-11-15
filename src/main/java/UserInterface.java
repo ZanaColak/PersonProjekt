@@ -28,16 +28,32 @@ public class UserInterface {
                     int age = sc.nextInt();
                     System.out.println("How tall is your person?");
                     double height = sc.nextInt();
-                    System.out.println("Which gender is your person w/m?");
+                    System.out.println("Which gender is your person W/M?");
                     String gender = sc.nextLine().toLowerCase();
                     sc.nextLine();
                     System.out.println("Is your person a human?");
                     String humanOr = sc.nextLine().toLowerCase();
-                    controller.database.addPersons(name,age,height,gender, Boolean.parseBoolean(humanOr)); //Her tilføjer
+                    controller.database.addPersons(name, age, height, gender, Boolean.parseBoolean(humanOr)); //Her tilføjer
                     //vi til vores arraylist, som er i database klassen
                     break;
                 case 2:
-                    // Something here
+                    if (controller.database.getPersons().isEmpty()) {//Hvis der ikke findes personer i databasen, så print...
+                        System.out.println("No persons is found in the database");
+                    } else {
+                        System.out.println("Choose the person that you want to delete: \n");
+                        for (Persons persons : controller.database.getPersons()) {  //For-Each loop
+                            System.out.println(controller.database.getPersons().indexOf(persons) + 1 + " " + persons.getName());
+                        }
+                        int r = readInt();
+                        int n = readInt();
+                        switch (n){
+                            case 1:
+                                controller.database.deletePerson(r);
+                                break;
+                            default:
+                                System.out.println("Please, try again!");
+                        }
+                    }
                     break;
                 case 3:
                     System.out.println("Enter the persons name, that you want to search for");
@@ -59,6 +75,13 @@ public class UserInterface {
 
             }
         }
+    }
+    public int readInt() { //En exception for integer
+        while (!sc.hasNextInt()) {
+            String text = sc.next();
+            System.out.println(text + " " + "Invalid data, enter a valid integer.");
+        }
+        return sc.nextInt();
     }
 }
 

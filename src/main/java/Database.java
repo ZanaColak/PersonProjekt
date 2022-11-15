@@ -19,4 +19,9 @@ public class Database {
     public ArrayList <Persons> getPersons(){ //Get metode til arraylisten
         return persons;
     }
+    public void deletePerson(int delete) { //Metode til at slette personer fra programmet
+        int deleteP = delete - 1;
+        System.out.println(persons.get(deleteP).getName() + " has been deleted");
+        persons.remove(deleteP);
+    }
 }

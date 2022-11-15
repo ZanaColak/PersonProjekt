@@ -59,6 +59,12 @@ public class UserInterface {
                     System.out.println("Enter the persons name, that you want to search for");
                     String searchP = sc.nextLine();
                     Persons persons = controller.database.searchForPersons(searchP); //Metode og klasse kald i et
+                    if (persons != null){
+                        System.out.println("Name: " + "" + persons.getName() + " " + "Age:" + "" + persons.getAge() + "" + "Height" +
+                                "" + persons.getHeight() + "" + "Gender:" + "" + persons.getKøn() + "" + "" + persons.isHumanOrNot() + "");
+                    }else {
+                        System.out.println("There is no person with that name");
+                    }
                     break;
                 case 4:
                     //Something here

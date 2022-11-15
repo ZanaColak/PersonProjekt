@@ -27,8 +27,8 @@ public class Persons {
     public String getKøn(){
         return køn;
     }
-    public boolean ishumanOrNot(){
-        return ishumanOrNot();
+    public boolean isHumanOrNot(){
+        return isHumanOrNot();
     }
     //Set metoder
     public void setName(String name){

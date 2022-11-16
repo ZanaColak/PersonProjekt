@@ -46,7 +46,7 @@ public class UserInterface {
                         }
                         int r = readInt();
                         int n = readInt();
-                        switch (n){
+                        switch (n) {
                             case 1:
                                 controller.database.deletePerson(r);
                                 break;
@@ -59,15 +59,25 @@ public class UserInterface {
                     System.out.println("Enter the persons name, that you want to search for");
                     String searchP = sc.nextLine();
                     Persons persons = controller.database.searchForPersons(searchP); //Metode og klasse kald i et
-                    if (persons != null){
+                    if (persons != null) {
                         System.out.println("Name: " + "" + persons.getName() + " " + "Age:" + "" + persons.getAge() + "" + "Height" +
                                 "" + persons.getHeight() + "" + "Gender:" + "" + persons.getKøn() + "" + "" + persons.isHumanOrNot() + "");
-                    }else {
+                    } else {
                         System.out.println("There is no person with that name");
                     }
                     break;
                 case 4:
-                    //Something here
+                    if (controller.database.getPersons().size() == 0) {
+                        System.out.println("There is no person registered \n");
+                    } else {
+                        System.out.println("List of person/persons that is registered \n");
+                        for (Persons persons1 : controller.database.getPersons() ) {
+                            System.out.println("Name:" + " " + persons1.getName() + " " + "Age:" + " " +
+                                    persons1.getAge() + " " + "Height:" + " " + persons1.getHeight() +
+                                    " " + "Gender:" + " " + persons1.getKøn() + " " + "Human or not:" +
+                                    " " + persons1.isHumanOrNot());
+                        }
+                    }
                     break;
                 case 5:
                     //Something here
@@ -82,6 +92,7 @@ public class UserInterface {
             }
         }
     }
+
     public int readInt() { //En exception for integer
         while (!sc.hasNextInt()) {
             String text = sc.next();
